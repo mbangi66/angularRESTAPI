@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Document</title>
+            </head>
+            <body id="bg">
+                <div class="container">
+                    <div id="card" class="col-md-12 col-lg-6 col-xl-5 mx-auto bd">
+                        <section class="form-gradient">
+                            <div class="card">
+                                <div class="header pt-3">
+                                    <div class="row d-flex justify-content-center">
+                                        <h3 class="white-text mb-3 pt-3 font-weight-bold">Contact Us</h3>
+                                    </div>
+                                </div>
+                                <form (submit)="addContact()">
+                                <div class="card-body mx-4 mt-4">
+                                    <div class="md-form">
+                                        <input type="text" id="Form-fname3" [(ngModel)]="first_name"
+                                        name="first_name" class="form-control" required>
+                                            <label for="Form-email3" class="">Your first name</label>
+                                        </div>
+                                        <div class="md-form">
+                                            <input type="text" id="Form-lname3" [(ngModel)]="last_name" name="last_name" class="form-control" required>
+                                                <label for="Form-pass3">Your last name</label>
+                                            </div>
+                                            <div class="md-form">
+                                                <input type="number" id="message5" [(ngModel)]="number" name="number" class="form-control" required>
+                                                    <label for="message5">Your number</label>
+                                                    <div class="form-group"></div>
+                                                </div>
+                                                <div class="row d-flex mb-4">
+                                                    <div class="col-md-1 col-md-5 d-flex  ml-auto">
+                                                        <div class="text-center">
+                                                            <input type="submit" class="btn btn-dark btn-rounded">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                </form>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                            <div class="container">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">First Name</th>
+                                        <th scope="col">Last Name</th>
+                                        <th scope="col">Number</th>
+                                    </tr>
+                                </thead>
+                                <tbody *ngFor="let contact of contacts">
+                                    <tr>
+                                        <th scope="row">{{contact._id}}</th>
+                                        <td>{{contact.first_name}}</td>
+                                        <td>{{contact.last_name}}</td>
+                                        <td>{{contact.number}}</td>
+                                        <input type="button" (click)="deleteContact(contact._id)" value="Delete" class="btn btn-secondary"/>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            </div>
+                            <div id="bt">
+                            </div>
+                        </body>
+                    </html>
