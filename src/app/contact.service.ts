@@ -23,7 +23,7 @@ export class ContactService {
   addContactS(newContact){
     const headers = new Headers();
     headers.append("Content-Type","application/json");
-    return this.http.post("http://localhost:3000/contact",newContact
+    return this.http.post("http://localhost:3000/contact",newContact,
     ({headers:headers})).pipe(map((res)=> res))
   }
 }
