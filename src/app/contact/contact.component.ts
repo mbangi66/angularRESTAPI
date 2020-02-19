@@ -34,15 +34,11 @@ export class ContactComponent implements OnInit {
   deleteContact(id: any) {
     var contacts = this.contacts;
     this.service.deleteContact(id).subscribe(data => {
-      console.log("id : " + id);
+      this.ngOnInit();
       if (data == 1) {
-        console.log("n = 1");
         for (var i = 0; i < contacts.length; i++) {
           if (contacts[i]._id == id) {
             contacts.slice(i, 1);
-            this.service
-              .getAllContacts()
-              .subscribe(contacts => (this.contacts = contacts));
           }
         }
       }
