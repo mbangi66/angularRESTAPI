@@ -21,9 +21,12 @@ export class ContactService {
     return this.http.get<Contact[]>("http://localhost:3000/contacts").pipe(map((res) => res))
   }
   addContactS(newContact){
-    const headers = new Headers();
-    headers.append("Content-Type","application/json");
+    const httpOptions = {
+      headers: new HttpHeaders({
+      'Content-Type':  'application/json'
+      })
+    };
     return this.http.post("http://localhost:3000/contact",newContact,
-    ({headers:headers})).pipe(map((res)=> res))
+    httpOptions).pipe(map((res)=> res))
   }
 }
