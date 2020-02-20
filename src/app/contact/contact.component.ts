@@ -3,6 +3,7 @@ import { Contact } from "../contact";
 import { ContactService } from "../contact.service";
 import { catchError } from 'rxjs/operators';
 import { error } from 'protractor';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 // import { FormControl,FormBuilder } from "@angular/forms";
 @Component({
   selector: 'app-contact',
@@ -11,13 +12,18 @@ import { error } from 'protractor';
   providers: [ContactService]
 })
 export class ContactComponent implements OnInit {
+  id:string;
   first_name: string;
   last_name: string;
   number: Number;
 
   constructor(private service:ContactService) { }
+  
+  myForm:FormControl;
 
   contacts:Contact[];
+  show = false;
+  submit = true;
   contact:Contact;
   addContact() {
     const newContact = {
@@ -29,6 +35,30 @@ export class ContactComponent implements OnInit {
       this.contacts.push(contact);
       this.ngOnInit();
     });
+    this.show = true;
+  }
+
+  editContact(id:any){
+    this.submit= false;
+    const editContact = {
+      _id:this.id,
+      first_name: this.first_name,
+      last_name: this.last_name,
+      number: this.number
+    };
+    var contacts = this.contacts;
+    this.service.editContact(editContact,id).toPromise().then((contact:any)=>{
+      this.contacts.push(contact);
+      this.ngOnInit();
+      if (contact == 1) {
+        for (var i = 0; i < contacts.length; i++) {
+          if (contacts[i]._id == id) {
+            this.contacts.push(contact);
+          }
+        }
+      }
+    })
+    this.myForm.reset();
   }
 
   deleteContact(id: any) {

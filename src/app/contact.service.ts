@@ -29,4 +29,13 @@ export class ContactService {
     return this.http.post("http://localhost:3000/contact",newContact,
     httpOptions).pipe(map((res)=> res))
   }
+
+  editContact(editContact,id){
+    const http = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+        })
+    };
+    return this.http.put("http://localhost:3000/contact/"+id,editContact,http).pipe(map((res)=>res))
+  }
 }
